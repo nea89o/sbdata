@@ -45,14 +45,14 @@ def main():
         keys = list(data[0].__dict__.keys())
         query = ''
         while True:
-            table = rich.table.Table()
+            table = rich.table.Table(show_footer=True)
             for k in keys:
-                table.add_column(k)
+                table.add_column(header=k, footer=k)
             for item in data:
                 if any(query in render_thing(val).casefold() for val in item.__dict__.values()):
                     table.add_row(*[render_thing(getattr(item, k)) for k in keys])
             console.print(table)
-            query = console.input("Search: ")
+            query = console.input("Search: ").casefold()
 
 
 if __name__ == '__main__':
