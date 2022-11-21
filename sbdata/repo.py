@@ -53,6 +53,10 @@ def load_items():
             load_item(item)
 
 
+def get_item_file(name):
+    return repo_dir / 'items' / (name + '.json')
+
+
 def load_repo_data():
     item_list.clear()
     load_items()
