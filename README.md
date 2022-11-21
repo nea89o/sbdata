@@ -6,6 +6,6 @@ Hi, jani, i will automate your job, and, when you are jobless, poor and homeless
 
 ## Setup
 
- - Make sure the NEU repo is set up. When in doubt you can always use `git submodule update --init` to redownload it
+ - Make sure the NEU repo is set up. Please clone it into `NotEnoughUpdates-REPO`
  - Set up your pipenv with `pipenv install`
  - Run either `pipenv run python -m sbdata -explore` or `pipenv run python -m sbdata -json` in the main directory.
