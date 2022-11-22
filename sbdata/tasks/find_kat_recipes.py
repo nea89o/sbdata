@@ -2,7 +2,7 @@ import json
 
 import mwparserfromhell.nodes
 
-from sbdata.repo import find_item_by_name, item_list, Item
+from sbdata.repo import find_item_by_name, item_list, Item, save_modified_file
 from sbdata.task import register_task, Arguments
 from sbdata.wiki import get_wiki_sources_by_title
 
@@ -55,7 +55,7 @@ def analyze_pet(itemid: str):
                     output=f'{itemid};{rarity_before_idx + 1}',
                     items=[f'{x[0].internalname}:{str(x[1])}' for x in mats]
                 )] + [r for r in itemjson.get('recipes', []) if r.get('type') != 'katgrade']
-                itemfile.write_text(json.dumps(itemjson, indent=2, sort_keys=True).replace('\\u00a7', '\u00a7') + "\n")
+                save_modified_file(itemfile, itemjson)
             break
 
 

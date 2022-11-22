@@ -1,3 +1,4 @@
+import collections
 import dataclasses
 import json
 import os
@@ -44,6 +45,17 @@ def find_item_by_name(name: str) -> typing.Optional[Item]:
     if pot:
         return pot[0]
     return None
+
+
+def save_modified_file(file: pathlib.Path, new_json: dict):
+    d: collections.OrderedDict = json.loads(file.read_text(), object_pairs_hook=lambda x: collections.OrderedDict(x))
+    for k, v in new_json.items():
+        d[k] = v
+    for k in d.keys():
+        if k not in new_json.keys():
+            del d[k]
+    file.write_text(json
+                    .dumps(d, sort_keys=False, indent=2, ensure_ascii=False))
 
 
 def load_items():
