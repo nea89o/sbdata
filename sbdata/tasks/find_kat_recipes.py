@@ -37,12 +37,12 @@ def analyze_pet(itemid: str):
                 costp = find_param(t, 'cost', rarity_postfix)
                 matsp = find_param(t, 'mats', rarity_postfix)
                 timep = find_param(t, 'time', rarity_postfix)
-                if None in [costp, matsp, timep]:
+                if None in [costp, timep]:
                     print(f"Missing data for {rarity_postfix} in {itemid}")
                     continue
                 cost = parse_coins(costp.value.strip_code())
                 time = parse_time(timep.value.strip_code())
-                mats = parse_mats(matsp.value.strip_code())
+                mats = parse_mats(matsp.value.strip_code()) if matsp else []
                 # print(f"Upgrading from {rarity_before_idx} to {rarity_before_idx + 1} using {mats} and {cost} coins in {time} seconds")
                 from sbdata.repo import get_item_file
                 itemfile = get_item_file(itemid + ';' + str(rarity_before_idx + 1))
